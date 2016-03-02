@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+  <head> 
+    <title> New Blog Post </title>
+    <style type="text/css">
+      body{
+          font-family: sans-serif;
+          width: 800px;
+          margin: 0 auto;
+          padding: 10px;
+        }
+
+        .error{
+          color: red;
+          margin-bottom: 10px;
+        }
+
+        h1{
+          text-align: center;
+        }
+        h3{
+          margin-bottom: 10px;
+        }
+
+
+        input[type="text"]{
+          width: 500px;
+          font-size: 17px;
+          margin-bottom: 10px;
+        }
+
+       textarea{
+          width: 500px;
+          height: 600px;
+          font-size: 17px;
+          margin-bottom: 10px;
+       
+        }
+
+        input[type="submit"]{
+          font-size: 17px;
+        }
+
+        a{
+          color: #000;
+          text-decoration: none;
+        }
+
+        a:hover{
+          color: orange;
+        }
+
+    </style>
+
+  </head>
+
+  
+  <body>
+    <h1><a href="/blog">CS253 Blog </a> </h1>
+    <h3> new post </h3>
+    <div class="error"> {{error}} </div>
+    <form method="post"> 
+      <label>
+        <div> subject </div>
+        <input type="text" name="title" value ="{{title}}">
+      </label> 
+
+      <label>
+        <div> blog </div>
+        <textarea name="content">{{content}}</textarea>
+      </label>  
+      <br>
+      <input type="submit">
+
+    </form>
+
+  </body>
+
+</html>

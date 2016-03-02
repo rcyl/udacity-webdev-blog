@@ -1,0 +1,13 @@
+application: udacity-webdev-blog-1219
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: blog.app
+
+libraries:
+- name: jinja2
+  version: latest

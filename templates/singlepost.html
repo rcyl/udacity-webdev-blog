@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<html>
+  <head> 
+    <title> CS253 Blog </title>
+
+    <style type="text/css">
+
+    body{
+        font-family: sans-serif;
+        width: 800px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      h1{
+        font-size: 40px;
+        text-align: center;
+      }
+
+      .shortcut{
+        float:right;
+        font-size: 17px;
+     }
+
+     .back{
+        float:left;
+        font-size: 17px;
+     }
+
+
+     .blog-title{
+        border-bottom: 3px solid rgba(52,61,70,1);
+        font-size: 25px;
+     }
+
+     
+     .blog-content{
+        font-size: 17px;
+        margin: 10px 0 10px 0;
+     }
+
+     .date{
+        float: right;
+        font-size: 17px;
+        color: rgba(167,173,186,1);
+     }
+
+     a{
+        color: #000;
+        text-decoration: none;
+     }
+
+     a:hover{
+        color: orange;
+     }
+
+
+     .query{
+        float: right;
+        color: rgba(167,173,186,1);
+
+     }
+
+
+    
+
+     </style>
+
+    <body>
+      <h1><span class="back"><a href="/blog"><i class="fa fa-arrow-left"></i> Back</a></span><a href="/blog">CS253 Blog </a> <span class="shortcut"> <a href="/blog/newPost">New Post</a> </span> </h1>
+
+      <div class="blog"> 
+      <div class="blog-title" >
+        <a href="/blog/{{blog.key().id()}}">{{blog.title}} </a> 
+        <span class="date"> {{(blog.created.strftime("%b %d, %Y"))}} </span>
+      </div>
+      <div class="blog-content">{{blog.content}}</div>
+    </div>
+     <div class="query"> {{query}} </div>
+
+    </body>
+  </html>
+     
