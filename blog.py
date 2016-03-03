@@ -53,6 +53,8 @@ class Handler(webapp2.RequestHandler):
         uid = self.get_secure_cookie('User-id')
         self.user = uid and Users.by_id(int(uid))
 
+
+
 class Blog(db.Model):
     title = db.StringProperty(required=True)
     content = db.TextProperty(required=True)
@@ -68,6 +70,15 @@ class Blog(db.Model):
             "last_mod": self.last_mod.strftime(time_fmt)
             }
         return d;
+
+def top_blogs(update= False):
+    key = 'top'
+    blogs, age = utils.age_get(key)
+    if update or blogs is None:
+        blogs = db.GqlQuery("SELECT * FROM Blog ORDER BY created DESC")
+        utils.age_set(key, blogs)
+    return blogs, age
+
 
 class Users(db.Model):
     username = db.StringProperty(required=True)
@@ -97,7 +108,7 @@ class Users(db.Model):
 
 class BlogHandler(Handler):
     def render_main(self):
-        blogs, age = utils.top_blogs()
+        blogs, age = top_blogs()
         if self.format == "html":
             self.render("main.html", query = utils.age_str(age), blogs = blogs, user = self.user)
         else:
@@ -147,7 +158,7 @@ class newPostHandler(Handler):
         if title and content:
             b = Blog(title=title, content = content)
             b.put()
-            utils.top_blogs(update=True) #updating cache
+            top_blogs(update=True) #updating cache
             self.redirect("/blog/%s" % b.key().id())
         else:
             error = "we need both the title and some content"

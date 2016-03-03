@@ -82,11 +82,3 @@ def age_str(age):
        s.replace("seconds", "second")
     return s % age
 
-def top_blogs(update= False):
-    key = 'top'
-    blogs, age = age_get(key)
-    if update or blogs is None:
-        blogs = db.GqlQuery("SELECT * FROM Blog ORDER BY created DESC")
-        blogs = list(blogs)
-        age_set(key, blogs)
-    return blogs, age
